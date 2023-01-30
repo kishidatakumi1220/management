@@ -23,6 +23,11 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<style>
+    .cgi{
+		  text-align:right
+	  }
+	  </style>
   </head>
   <body>
     <div class="container">
@@ -88,6 +93,12 @@
           <a href="list.html" th:href="@{/employee/showList}">従業員リスト</a>
         </li>
       </ol>
+      
+      <form action="cgi-bin/example.cgi" STYLE=" text-align:right" method="post">
+  <p>従業員検索</p>
+  <input type="search" name="search" placeholder="名前を入力">
+  <input type="submit" name="submit" value="検索">
+</form>
 
       <!-- table -->
       <div class="row">
