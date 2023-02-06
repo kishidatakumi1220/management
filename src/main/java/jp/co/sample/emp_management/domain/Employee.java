@@ -2,6 +2,8 @@ package jp.co.sample.emp_management.domain;
 
 import java.util.Date;
 
+
+
 /**
  * 従業員情報を表すドメイン.
  * 
@@ -126,8 +128,8 @@ public class Employee {
 		return zipCode;
 	}
 
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
+	public void setZipCode(String ZipCode) {
+		this.zipCode = ZipCode;
 	}
 
 	public String getAddress() {

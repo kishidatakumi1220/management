@@ -2,6 +2,7 @@ package jp.co.sample.emp_management.controller;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,10 +65,13 @@ public class EmployeeController {
 	 * @return 従業員詳細画面
 	 */
 	@RequestMapping("/showDetail")
-	public String showDetail(String id, Model model) {
-		Employee employee = employeeService.showDetail(Integer.parseInt(id));
+	public String showDetail(UpdateEmployeeForm form, Model model) {
+		Employee employee = employeeService.showDetail(form.getIntId());
 		model.addAttribute("employee", employee);
-		return "employee/detail";
+		form.setId("" + employee.getId());
+		form.setDependentsCount(employee.getDependentsCount());
+		BeanUtils.copyProperties(employee, form);
+	    return "employee/detail";
 	}
 
 	/////////////////////////////////////////////////////
@@ -86,8 +90,24 @@ public class EmployeeController {
 		}
 		Employee employee = new Employee();
 		employee.setId(form.getIntId());
-		employee.setDependentsCount(form.getIntDependentsCount());
+		employee.setDependentsCount(form.getDependentsCount());
+		employee.setName(form.getName());
+		employee.setGender(form.getGender());
+	employee.setHireDate(form.getHireDate());
+	employee.setMailAddress(form.getMailAddress());
+		employee.setZipCode(form.getZipCode());
+		employee.setAddress(form.getAddress());
+		employee.setTelephone(form.getTelephone());
+//		employee.setSalary(form.getSalary());
+	employee.setCharacteristics(form.getCharacteristics());
+
+		
 		employeeService.update(employee);
-		return "redirect:/employee/showList";
+		return "redirect:/employee/showList"; 
+	}
+
+	private String showDetail(String id, Model model) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
